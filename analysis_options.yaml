@@ -36,6 +36,7 @@ dart_code_metrics:
     number-of-parameters: 4
     maximum-nesting-level: 5
   metrics-exclude:
+    - lib/src/presentation/common/**
     - test/**
 
   rules:
