@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:liana/src/di/di_widget.dart';
 import 'package:liana/src/liana_app.dart';
 

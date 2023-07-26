@@ -1,11 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 PageRoute<T> platformPageRoute<T>({
-  required RouteSettings? settings,
   required Widget Function(BuildContext) builder,
+  RouteSettings? settings,
 }) {
   if (Platform.isIOS) {
     return CupertinoPageRoute<T>(
@@ -14,8 +13,31 @@ PageRoute<T> platformPageRoute<T>({
     );
   }
 
-  return MaterialPageRoute<T>(
+  return PageRouteBuilder<T>(
     settings: settings,
-    builder: builder,
+    pageBuilder: (context, __, ___) => builder(context),
+    transitionDuration: const Duration(milliseconds: 200),
+    reverseTransitionDuration: const Duration(milliseconds: 200),
+    transitionsBuilder: (
+      _,
+      animation,
+      secondAnimation,
+      child,
+    ) => FadeTransition(
+      opacity: animation,
+      child: SlideTransition(
+        position: Tween(
+          begin: const Offset(1, 0),
+          end: Offset.zero,
+        ).animate(animation),
+        child: SlideTransition(
+          position: Tween(
+            begin: Offset.zero,
+            end: const Offset(1, 0),
+          ).animate(secondAnimation),
+          child: child,
+        ),
+      ),
+    ),
   );
 }
