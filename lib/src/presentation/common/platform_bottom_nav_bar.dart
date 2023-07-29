@@ -8,8 +8,8 @@ class PlatformBottomNavBar {
     required this.selectedItemIndex,
     required this.onItemTap,
   }) {
-    cupertinoItems = items.map((e) => e.toCupertino()).toList();
-    materialItems = items.map((e) => e.toMaterial()).toList();
+    cupertinoItems = items.map((e) => e._toCupertino()).toList();
+    materialItems = items.map((e) => e._toMaterial()).toList();
   }
 
   late final List<BottomNavigationBarItem> cupertinoItems;
@@ -52,14 +52,14 @@ class BottomNavBarItem {
   final Widget materialIcon;
   final String label;
   
-  BottomNavigationBarItem toCupertino() {
+  BottomNavigationBarItem _toCupertino() {
     return BottomNavigationBarItem(
       icon: cupertinoIcon,
       label: label,
     );
   }
   
-  NavigationDestination toMaterial() {
+  NavigationDestination _toMaterial() {
     return NavigationDestination(
       icon: materialIcon,
       label: label,
