@@ -30,3 +30,6 @@ PageRoute<dynamic> cubitScreen<T extends Cubit<Object?>>(
 }
 
 NavigatorState? navigator(BuildContext context) => Navigator.of(context);
+
+NavigatorState? rootNavigator(BuildContext context) =>
+  Navigator.of(context, rootNavigator: true);

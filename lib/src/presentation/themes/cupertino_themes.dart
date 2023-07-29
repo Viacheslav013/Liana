@@ -30,6 +30,16 @@ final tabBarBordersColor = const CupertinoDynamicColor.withBrightness(
   darkColor: Color(0xFFBAC8DB),
 ).withOpacity(0.4);
 
+Color getFormBottomSheetSheetBackgroundColor(BuildContext context) {
+  if (MediaQuery.of(context).platformBrightness == Brightness.light) {
+    return const Color(0xFFF2F2F7);
+  }
+
+  return const Color(0xFF1C1C1E);
+}
+
+const progressIndicatorColor = Color(0xFF338AD3);
+
 const cupertinoTheme = CupertinoThemeData(
   primaryColor: Color(0xFF338AD3),
   primaryContrastingColor: Color(0xFFFFFFFF),
