@@ -8,6 +8,7 @@ class PlatformListTile extends PlatformWidget {
     this.leading,
     this.trailing,
     this.subtitle,
+    this.onTap,
     super.key,
   });
 
@@ -15,6 +16,7 @@ class PlatformListTile extends PlatformWidget {
   final Widget? trailing;
   final Widget title;
   final Widget? subtitle;
+  final VoidCallback? onTap;
 
   @override
   Widget buildCupertinoWidget(BuildContext context) {
@@ -23,6 +25,7 @@ class PlatformListTile extends PlatformWidget {
       trailing: trailing,
       title: title,
       subtitle: subtitle,
+      onTap: onTap,
     );
   }
 
@@ -33,6 +36,7 @@ class PlatformListTile extends PlatformWidget {
       trailing: trailing,
       title: title,
       subtitle: subtitle,
+      onTap: onTap,
     );
   }
 }

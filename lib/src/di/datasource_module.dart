@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:liana/src/data/database/liana_app_database.dart';
 import 'package:liana/src/data/datasource/folders_datasource.dart';
+import 'package:liana/src/data/datasource/modules_datasource.dart';
 
 const _dbFileName = 'liana_app_database.db';
 
@@ -14,4 +15,7 @@ abstract class DatasourceModule {
   @singleton
   FoldersDatasource provideFoldersDatasource(LianaAppDatabase database) =>
     database.foldersDatasource;
+
+  ModulesDatasource provideModulesDatasource(LianaAppDatabase database) =>
+    database.modulesDatasource;
 }

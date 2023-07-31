@@ -44,7 +44,7 @@ class _EditFolderFormState extends State<EditFolderForm> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Form(
         key: widget.formKey,
         child: PlatformFormSection(
@@ -53,7 +53,7 @@ class _EditFolderFormState extends State<EditFolderForm> {
             PlatformFormTextField(
               textEditingController: folderNameController,
               prefix: const Text('Имя папки'),
-              placeholder: 'Папка...',
+              placeholder: 'Папка',
               validator: widget.folderNameValidator,
               textInputAction: TextInputAction.done,
               textCapitalization: TextCapitalization.sentences,
