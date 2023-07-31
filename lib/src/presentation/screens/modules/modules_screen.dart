@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:liana/src/domain/entity/folder.dart';
+import 'package:liana/src/domain/entity/module.dart';
 import 'package:liana/src/presentation/base/cubit_helper.dart';
 import 'package:liana/src/presentation/base/loadable.dart';
 import 'package:liana/src/presentation/common/platform_button.dart';
@@ -8,73 +9,81 @@ import 'package:liana/src/presentation/common/platform_scaffold.dart';
 import 'package:liana/src/presentation/common/platform_top_app_bar.dart';
 import 'package:liana/src/presentation/common/show_platform_bottom_sheet.dart';
 import 'package:liana/src/presentation/common/show_platform_dialog.dart';
-import 'package:liana/src/presentation/navigation/routes.dart';
 import 'package:liana/src/presentation/navigation/utils.dart';
-import 'package:liana/src/presentation/screens/library/cubit/library_screen_cubit.dart';
-import 'package:liana/src/presentation/screens/library/cubit/library_screen_state.dart';
-import 'package:liana/src/presentation/screens/library/widgets/edit_folder_form.dart';
-import 'package:liana/src/presentation/screens/library/widgets/folder_list_item.dart';
+import 'package:liana/src/presentation/screens/modules/cubit/modules_screen_cubit.dart';
+import 'package:liana/src/presentation/screens/modules/cubit/modules_screen_state.dart';
+import 'package:liana/src/presentation/screens/modules/widgets/edit_module_form.dart';
+import 'package:liana/src/presentation/screens/modules/widgets/module_list_item.dart';
 import 'package:liana/src/presentation/themes/cupertino_themes.dart';
 
-class LibraryScreenContent extends StatefulWidget {
-  const LibraryScreenContent({super.key});
+class ModulesScreenContent extends StatefulWidget {
+  const ModulesScreenContent({
+    required this.folder,
+    this.previousPageTitle,
+    super.key,
+  });
+
+  final Folder folder;
+  final String? previousPageTitle;
 
   @override
-  State<LibraryScreenContent> createState() => _LibraryScreenContentState();
+  State<ModulesScreenContent> createState() => _ModulesScreenContentState();
 }
 
-class _LibraryScreenContentState
-    extends State<LibraryScreenContent>
-    with CubitHelper<LibraryScreenCubit, LibraryScreenState> {
+class _ModulesScreenContentState
+    extends State<ModulesScreenContent>
+    with CubitHelper<ModulesScreenCubit, ModulesScreenState> {
 
   final formKey = GlobalKey<FormState>();
 
-  void _onAddFolderButtonPressed(
+  void _onAddModuleButtonPressed(
     BuildContext context,
-    LibraryScreenCubit? cubit,
+    ModulesScreenCubit? cubit,
   ) {
     showPlatformBottomSheet(
       context: rootNavigator(context)?.context ?? context,
       iosBackgroundColor: getFormBottomSheetSheetBackgroundColor(context),
       iosHeight: 500,
-      child: EditFolderForm(
+      child: EditModuleForm(
         formKey: formKey,
-        title: 'Создать папку',
-        onSubmitForm: (folder) => _onCreateFolderFormSubmit(cubit, folder),
-        folderNameValidator: cubit?.validateFolderName ?? (_) => null,
+        title: 'Создать модуль',
+        folder: widget.folder,
+        onSubmitForm: (module) => _onCreateModuleSubmit(cubit, module),
+        moduleNameValidator: cubit?.validateModuleName ?? (_) => null,
       ),
     );
   }
 
-  void _onCreateFolderFormSubmit(LibraryScreenCubit? cubit, Folder folder) {
+  void _onCreateModuleSubmit(ModulesScreenCubit? cubit, Module module) {
     if (formKey.currentState?.validate() == true) {
-      cubit?.onCreateFolder(folder);
+      cubit?.onCreateModule(module);
       rootNavigator(context)?.pop();
     }
   }
 
-  void _onEditFolderButtonPressed(
-      BuildContext context,
-      Folder folder,
-      LibraryScreenCubit? cubit,
+  void _onEditModuleButtonPressed(
+    BuildContext context,
+    Module module,
+    ModulesScreenCubit? cubit,
   ) {
     showPlatformBottomSheet(
       context: rootNavigator(context)?.context ?? context,
       iosBackgroundColor: getFormBottomSheetSheetBackgroundColor(context),
       iosHeight: 500,
-      child: EditFolderForm(
+      child: EditModuleForm(
         formKey: formKey,
-        folderToEdit: folder,
-        title: 'Редактировать папку',
-        onSubmitForm: (folder) => _onEditFolderFormSubmit(cubit, folder),
-        folderNameValidator: cubit?.validateFolderName ?? (_) => null,
+        title: 'Редактировать модуль',
+        folder: widget.folder,
+        moduleToEdit: module,
+        onSubmitForm: (module) => _onEditModuleSubmit(cubit, module),
+        moduleNameValidator: cubit?.validateModuleName ?? (_) => null,
       ),
     );
   }
 
-  void _onEditFolderFormSubmit(LibraryScreenCubit? cubit, Folder folder) {
+  void _onEditModuleSubmit(ModulesScreenCubit? cubit, Module module) {
     if (formKey.currentState?.validate() == true) {
-      cubit?.onUpdateFolder(folder);
+      cubit?.onUpdateModule(module);
       rootNavigator(context)?.pop();
     }
   }
@@ -92,7 +101,6 @@ class _LibraryScreenContentState
           showPlatformDialog(
             context: context,
             title: const Text('Ошибка'),
-            content: Text(state.error ?? ''),
             actions: [
               PlatformDialogAction(
                 isDefaultAction: true,
@@ -105,38 +113,34 @@ class _LibraryScreenContentState
       },
       builder: (_, state) => PlatformScaffold(
         topAppBar: platformTopAppBar(
-          title: const Text('Библиотека'),
+          title: Text(widget.folder.name),
+          previousPageTitle: widget.previousPageTitle,
           trailing: PlatformButton(
             padding: const EdgeInsets.all(10),
-            onPressed: () => _onAddFolderButtonPressed(
-              context,
-              cubit(context),
-            ),
+            onPressed: () => _onAddModuleButtonPressed(context, cubit(context)),
             child: const Icon(CupertinoIcons.add),
           ),
         ),
         body: Loadable(
           isLoading: state.isLoading,
           child: ListView.separated(
-            itemBuilder: (_, index) => FolderListItem(
-              onTap: (folder) => navigator(context)?.push(
-                createModulesScreenRoute(folder, 'Библиотека'),
-              ),
-              onEditPressed: (folder) => _onEditFolderButtonPressed(
+            itemCount: state.modules.length,
+            separatorBuilder: (_, __) => const Divider(height: 0),
+            itemBuilder: (_, index) => ModuleListItem(
+              module: state.modules[index],
+              onTap: (module) => { /* TODO */ },
+              onEditPressed: (module) => _onEditModuleButtonPressed(
                 context,
-                folder,
+                module,
                 cubit(context),
               ),
-              onDeletePressed: (folder) =>
-                cubit(context)?.onDeleteFolder(folder),
-              folder: state.folders[index],
+              onDeletePressed: (module) =>
+                cubit(context)?.onDeleteModule(module),
             ),
-            separatorBuilder: (_, __) => const Divider(height: 0),
-            itemCount: state.folders.length,
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () => _onAddFolderButtonPressed(context, cubit(context)),
+          onPressed: () => _onAddModuleButtonPressed(context, cubit(context)),
           child: const Icon(Icons.add),
         ),
       ),

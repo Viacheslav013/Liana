@@ -7,34 +7,34 @@ import 'package:liana/src/domain/repository/folders_repository.dart';
 @Injectable(as: FoldersRepository)
 class FoldersRepositoryImpl implements FoldersRepository {
   const FoldersRepositoryImpl(
-    this.foldersDatasource,
-    this.folderToDtoMapper,
-    this.dtoToFolderMapper,
+    this._foldersDatasource,
+    this._folderToDtoMapper,
+    this._dtoToFolderMapper,
   );
 
-  final FoldersDatasource foldersDatasource;
-  final FolderToDtoMapper folderToDtoMapper;
-  final DtoToFolderMapper dtoToFolderMapper;
+  final FoldersDatasource _foldersDatasource;
+  final FolderToDtoMapper _folderToDtoMapper;
+  final DtoToFolderMapper _dtoToFolderMapper;
 
   @override
   Stream<List<Folder>> getAllFolders() {
-    return foldersDatasource
+    return _foldersDatasource
       .getAllFolders()
-      .map((folders) => folders.map(dtoToFolderMapper.map).toList());
+      .map((folders) => folders.map(_dtoToFolderMapper.map).toList());
   }
 
   @override
   Future<void> createFolder(Folder folder) async {
-    await foldersDatasource.createFolder(folderToDtoMapper.map(folder));
+    await _foldersDatasource.createFolder(_folderToDtoMapper.map(folder));
   }
 
   @override
   Future<void> updateFolder(Folder folder) async {
-    await foldersDatasource.updateFolder(folderToDtoMapper.map(folder));
+    await _foldersDatasource.updateFolder(_folderToDtoMapper.map(folder));
   }
 
   @override
   Future<void> deleteFolder(Folder folder) async {
-    await foldersDatasource.deleteFolder(folderToDtoMapper.map(folder));
+    await _foldersDatasource.deleteFolder(_folderToDtoMapper.map(folder));
   }
 }
