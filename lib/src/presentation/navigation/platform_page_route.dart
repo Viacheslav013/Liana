@@ -23,7 +23,8 @@ PageRoute<T> platformPageRoute<T>({
       animation,
       secondAnimation,
       child,
-    ) => FadeTransition(
+    ) =>
+        FadeTransition(
       opacity: animation,
       child: SlideTransition(
         position: Tween(

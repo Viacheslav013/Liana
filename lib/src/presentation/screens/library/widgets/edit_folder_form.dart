@@ -26,7 +26,6 @@ class EditFolderForm extends StatefulWidget {
 }
 
 class _EditFolderFormState extends State<EditFolderForm> {
-
   final folderNameController = TextEditingController();
 
   @override
@@ -52,7 +51,10 @@ class _EditFolderFormState extends State<EditFolderForm> {
           children: [
             PlatformFormTextField(
               textEditingController: folderNameController,
-              prefix: const Text('Имя папки'),
+              prefix: const Padding(
+                padding: EdgeInsets.only(right: 6),
+                child: Text('Название'),
+              ),
               placeholder: 'Папка',
               validator: widget.folderNameValidator,
               textInputAction: TextInputAction.done,

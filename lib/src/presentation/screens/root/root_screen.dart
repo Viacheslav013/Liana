@@ -16,7 +16,6 @@ class RootScreen extends StatefulWidget {
 }
 
 class RootScreenState extends State<RootScreen> {
-
   final _navigatorKeys = [
     GlobalKey<NavigatorState>(),
     GlobalKey<NavigatorState>(),

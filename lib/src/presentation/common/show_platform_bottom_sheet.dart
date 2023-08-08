@@ -7,7 +7,8 @@ Future<T?> showPlatformBottomSheet<T>({
   required BuildContext context,
   required Widget child,
   Color? iosBackgroundColor,
-  double? iosHeight,
+  double? minHeight,
+  bool isScrollControlled = false,
 }) {
   if (Platform.isIOS) {
     return showCupertinoModalPopup<T>(
@@ -15,7 +16,7 @@ Future<T?> showPlatformBottomSheet<T>({
       builder: (_) => CupertinoPopupSurface(
         child: Container(
           color: iosBackgroundColor,
-          height: iosHeight,
+          height: minHeight,
           width: double.infinity,
           child: child,
         ),
@@ -26,7 +27,12 @@ Future<T?> showPlatformBottomSheet<T>({
   return showModalBottomSheet<T>(
     context: context,
     showDragHandle: true,
-    constraints: const BoxConstraints(minWidth: double.infinity),
+    isScrollControlled: isScrollControlled,
+    constraints: BoxConstraints(
+      minWidth: double.infinity,
+      minHeight: minHeight ?? 0,
+      maxHeight: minHeight ?? double.infinity,
+    ),
     builder: (_) => child,
   );
 }

@@ -8,6 +8,6 @@ class Module with _$Module {
     required int? id,
     required String name,
     required int folderId,
-    required int numberOfDefinitions,
+    required int numberOfTermsDefinitions,
   }) = _Module;
 }

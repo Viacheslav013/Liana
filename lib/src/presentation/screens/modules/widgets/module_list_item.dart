@@ -7,6 +7,7 @@ import 'package:liana/src/domain/entity/module.dart';
 import 'package:liana/src/presentation/common/platform_icon.dart';
 import 'package:liana/src/presentation/common/platform_list_tile.dart';
 import 'package:liana/src/presentation/themes/colors.dart';
+import 'package:liana/src/presentation/themes/cupertino_themes.dart';
 
 class ModuleListItem extends StatelessWidget {
   const ModuleListItem({
@@ -58,7 +59,12 @@ class ModuleListItem extends StatelessWidget {
         ),
         subtitle: Padding(
           padding: const EdgeInsets.only(top: 2),
-          child: Text('${module.numberOfDefinitions} терминов'),
+          child: Text(
+            '${module.numberOfTermsDefinitions} терминов',
+            style: Platform.isIOS
+                ? getCupertinoListSubtitleTextStyle(context)
+                : null,
+          ),
         ),
       ),
     );

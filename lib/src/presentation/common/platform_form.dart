@@ -30,15 +30,17 @@ class PlatformFormSection extends PlatformWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (header != null) Text(
-          header ?? '',
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
+        if (header != null)
+          Text(
+            header ?? '',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
         if (header != null) const SizedBox(height: 6),
-        for (Widget formField in children) Padding(
-          padding: const EdgeInsets.symmetric(vertical: 2),
-          child: formField,
-        ),
+        for (Widget formField in children)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 2),
+            child: formField,
+          ),
       ],
     );
   }

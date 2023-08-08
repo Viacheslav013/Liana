@@ -18,8 +18,8 @@ class ModulesScreenCubit extends Cubit<ModulesScreenState> {
 
   void onCreate(Folder folder) {
     _modulesStreamSubscription = _modulesRepository
-      .getModulesByFolderId(folder.id ?? -1)
-      .listen(_modulesListener, onError: (_) => _emitError());
+        .getModulesByFolderId(folder.id ?? -1)
+        .listen(_modulesListener, onError: (_) => _emitError());
   }
 
   void _modulesListener(List<Module> modules) {

@@ -4,6 +4,7 @@ import 'package:liana/src/domain/entity/folder.dart';
 import 'package:liana/src/presentation/base/cubit_helper.dart';
 import 'package:liana/src/presentation/base/loadable.dart';
 import 'package:liana/src/presentation/common/platform_button.dart';
+import 'package:liana/src/presentation/common/platform_divider.dart';
 import 'package:liana/src/presentation/common/platform_scaffold.dart';
 import 'package:liana/src/presentation/common/platform_top_app_bar.dart';
 import 'package:liana/src/presentation/common/show_platform_bottom_sheet.dart';
@@ -23,10 +24,8 @@ class LibraryScreenContent extends StatefulWidget {
   State<LibraryScreenContent> createState() => _LibraryScreenContentState();
 }
 
-class _LibraryScreenContentState
-    extends State<LibraryScreenContent>
+class _LibraryScreenContentState extends State<LibraryScreenContent>
     with CubitHelper<LibraryScreenCubit, LibraryScreenState> {
-
   final formKey = GlobalKey<FormState>();
 
   void _onAddFolderButtonPressed(
@@ -36,7 +35,7 @@ class _LibraryScreenContentState
     showPlatformBottomSheet(
       context: rootNavigator(context)?.context ?? context,
       iosBackgroundColor: getFormBottomSheetSheetBackgroundColor(context),
-      iosHeight: 500,
+      minHeight: 500,
       child: EditFolderForm(
         formKey: formKey,
         title: 'Создать папку',
@@ -54,14 +53,14 @@ class _LibraryScreenContentState
   }
 
   void _onEditFolderButtonPressed(
-      BuildContext context,
-      Folder folder,
-      LibraryScreenCubit? cubit,
+    BuildContext context,
+    Folder folder,
+    LibraryScreenCubit? cubit,
   ) {
     showPlatformBottomSheet(
       context: rootNavigator(context)?.context ?? context,
       iosBackgroundColor: getFormBottomSheetSheetBackgroundColor(context),
-      iosHeight: 500,
+      minHeight: 500,
       child: EditFolderForm(
         formKey: formKey,
         folderToEdit: folder,
@@ -128,10 +127,10 @@ class _LibraryScreenContentState
                 cubit(context),
               ),
               onDeletePressed: (folder) =>
-                cubit(context)?.onDeleteFolder(folder),
+                  cubit(context)?.onDeleteFolder(folder),
               folder: state.folders[index],
             ),
-            separatorBuilder: (_, __) => const Divider(height: 0),
+            separatorBuilder: (_, __) => const PlatformDivider(),
             itemCount: state.folders.length,
           ),
         ),
