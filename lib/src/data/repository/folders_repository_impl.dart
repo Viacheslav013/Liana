@@ -19,8 +19,8 @@ class FoldersRepositoryImpl implements FoldersRepository {
   @override
   Stream<List<Folder>> getAllFolders() {
     return _foldersDatasource
-      .getAllFolders()
-      .map((folders) => folders.map(_dtoToFolderMapper.map).toList());
+        .getAllFolders()
+        .map((folders) => folders.map(_dtoToFolderMapper.map).toList());
   }
 
   @override

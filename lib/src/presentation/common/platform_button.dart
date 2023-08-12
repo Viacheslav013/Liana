@@ -17,9 +17,9 @@ class PlatformButton extends PlatformWidget {
   @override
   Widget buildCupertinoWidget(BuildContext context) {
     return CupertinoButton(
-        onPressed: onPressed,
-        padding: padding,
-        child: child,
+      onPressed: onPressed,
+      padding: padding,
+      child: child,
     );
   }
 

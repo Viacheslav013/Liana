@@ -17,8 +17,8 @@ class LibraryScreenCubit extends Cubit<LibraryScreenState> {
 
   void onCreate() {
     _foldersStreamSubscription = _foldersRepository
-      .getAllFolders()
-      .listen(_foldersListener, onError: (_) => emitError());
+        .getAllFolders()
+        .listen(_foldersListener, onError: (_) => emitError());
   }
 
   void _foldersListener(List<Folder> folders) {
@@ -33,7 +33,7 @@ class LibraryScreenCubit extends Cubit<LibraryScreenState> {
 
   String? validateFolderName(String? name) {
     if (name == null || name.isEmpty) {
-      return 'Пожалуйста, введите имя папки';
+      return 'Пожалуйста, введите название папки';
     }
 
     return null;

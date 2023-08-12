@@ -5,10 +5,12 @@ import 'package:liana/src/domain/entity/module.dart';
 import 'package:liana/src/presentation/base/cubit_helper.dart';
 import 'package:liana/src/presentation/base/loadable.dart';
 import 'package:liana/src/presentation/common/platform_button.dart';
+import 'package:liana/src/presentation/common/platform_divider.dart';
 import 'package:liana/src/presentation/common/platform_scaffold.dart';
 import 'package:liana/src/presentation/common/platform_top_app_bar.dart';
 import 'package:liana/src/presentation/common/show_platform_bottom_sheet.dart';
 import 'package:liana/src/presentation/common/show_platform_dialog.dart';
+import 'package:liana/src/presentation/navigation/routes.dart';
 import 'package:liana/src/presentation/navigation/utils.dart';
 import 'package:liana/src/presentation/screens/modules/cubit/modules_screen_cubit.dart';
 import 'package:liana/src/presentation/screens/modules/cubit/modules_screen_state.dart';
@@ -30,10 +32,8 @@ class ModulesScreenContent extends StatefulWidget {
   State<ModulesScreenContent> createState() => _ModulesScreenContentState();
 }
 
-class _ModulesScreenContentState
-    extends State<ModulesScreenContent>
+class _ModulesScreenContentState extends State<ModulesScreenContent>
     with CubitHelper<ModulesScreenCubit, ModulesScreenState> {
-
   final formKey = GlobalKey<FormState>();
 
   void _onAddModuleButtonPressed(
@@ -43,7 +43,7 @@ class _ModulesScreenContentState
     showPlatformBottomSheet(
       context: rootNavigator(context)?.context ?? context,
       iosBackgroundColor: getFormBottomSheetSheetBackgroundColor(context),
-      iosHeight: 500,
+      minHeight: 500,
       child: EditModuleForm(
         formKey: formKey,
         title: 'Создать модуль',
@@ -69,7 +69,7 @@ class _ModulesScreenContentState
     showPlatformBottomSheet(
       context: rootNavigator(context)?.context ?? context,
       iosBackgroundColor: getFormBottomSheetSheetBackgroundColor(context),
-      iosHeight: 500,
+      minHeight: 500,
       child: EditModuleForm(
         formKey: formKey,
         title: 'Редактировать модуль',
@@ -125,17 +125,22 @@ class _ModulesScreenContentState
           isLoading: state.isLoading,
           child: ListView.separated(
             itemCount: state.modules.length,
-            separatorBuilder: (_, __) => const Divider(height: 0),
+            separatorBuilder: (_, __) => const PlatformDivider(),
             itemBuilder: (_, index) => ModuleListItem(
               module: state.modules[index],
-              onTap: (module) => { /* TODO */ },
+              onTap: (module) => navigator(context)?.push(
+                createTermsAndDefinitionsScreenRoute(
+                  state.modules[index],
+                  'Модули',
+                ),
+              ),
               onEditPressed: (module) => _onEditModuleButtonPressed(
                 context,
                 module,
                 cubit(context),
               ),
               onDeletePressed: (module) =>
-                cubit(context)?.onDeleteModule(module),
+                  cubit(context)?.onDeleteModule(module),
             ),
           ),
         ),

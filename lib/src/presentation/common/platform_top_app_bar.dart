@@ -12,18 +12,18 @@ PreferredSizeWidget platformTopAppBar({
   String? previousPageTitle,
 }) {
   if (Platform.isIOS) {
-     return CupertinoNavigationBar(
-       leading: leading,
-       middle: title,
-       trailing: trailing,
-       previousPageTitle: previousPageTitle,
-       border: Border(
-         bottom: BorderSide(
-           color: navigationBarBordersColor,
-           width: 0,
-         ),
-       ),
-     );
+    return CupertinoNavigationBar(
+      leading: leading,
+      middle: title,
+      trailing: trailing,
+      previousPageTitle: previousPageTitle,
+      border: Border(
+        bottom: BorderSide(
+          color: navigationBarBordersColor,
+          width: 0,
+        ),
+      ),
+    );
   }
 
   return AppBar(

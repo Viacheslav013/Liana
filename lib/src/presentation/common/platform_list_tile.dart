@@ -21,6 +21,12 @@ class PlatformListTile extends PlatformWidget {
   @override
   Widget buildCupertinoWidget(BuildContext context) {
     return CupertinoListTile(
+      padding: const EdgeInsetsDirectional.only(
+        start: 20,
+        end: 14,
+        top: 6,
+        bottom: 6,
+      ),
       leading: leading,
       trailing: trailing,
       title: title,

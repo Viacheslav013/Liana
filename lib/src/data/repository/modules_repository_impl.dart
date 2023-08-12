@@ -9,18 +9,18 @@ class ModulesRepositoryImpl implements ModulesRepository {
   const ModulesRepositoryImpl(
     this._modulesDatasource,
     this._moduleToDtoMapper,
-    this._dtoToModuleMapper,
+    this._viewToModuleMapper,
   );
 
   final ModulesDatasource _modulesDatasource;
   final ModuleToDtoMapper _moduleToDtoMapper;
-  final DtoToModuleMapper _dtoToModuleMapper;
+  final ViewToModuleMapper _viewToModuleMapper;
 
   @override
   Stream<List<Module>> getModulesByFolderId(int folderId) {
     return _modulesDatasource
-      .getModulesByFolderId(folderId)
-      .map((modules) => modules.map(_dtoToModuleMapper.map).toList());
+        .getModulesByFolderId(folderId)
+        .map((modules) => modules.map(_viewToModuleMapper.map).toList());
   }
 
   @override

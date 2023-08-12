@@ -51,24 +51,28 @@ class PlatformScaffold extends PlatformWidget {
 
     if (localBottomNavBar != null) {
       return WillPopScope(
-        onWillPop: () async => !(await currentBottomNavBarNavigatorKey
-          ?.currentState?.maybePop() ?? false),
+        onWillPop: () async =>
+            !(await currentBottomNavBarNavigatorKey?.currentState?.maybePop() ??
+                false),
         child: Scaffold(
           appBar: topAppBar,
           body: Stack(
-            children: offstagesForRootScreens?.mapIndexed((offstage, index) =>
-              Offstage(
-                offstage: offstage,
-                child: Navigator(
-                  key: bottomNavBarNavigatorKeys?[index],
-                  onGenerateRoute: (settings) => MaterialPageRoute(
-                    settings: settings,
-                    builder: (_) =>
-                      rootBottomNavBarWidgets?[index] ?? Container(),
-                  ),
-                ),
-              ),
-            ).toList() ?? [],
+            children: offstagesForRootScreens
+                    ?.mapIndexed(
+                      (offstage, index) => Offstage(
+                        offstage: offstage,
+                        child: Navigator(
+                          key: bottomNavBarNavigatorKeys?[index],
+                          onGenerateRoute: (settings) => MaterialPageRoute(
+                            settings: settings,
+                            builder: (_) =>
+                                rootBottomNavBarWidgets?[index] ?? Container(),
+                          ),
+                        ),
+                      ),
+                    )
+                    .toList() ??
+                [],
           ),
           bottomNavigationBar: localBottomNavBar.buildMaterialWidget(),
           floatingActionButton: floatingActionButton,

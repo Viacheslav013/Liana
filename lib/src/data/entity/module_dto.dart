@@ -14,7 +14,11 @@ import 'package:liana/src/data/entity/folder_dto.dart';
   ],
 )
 class ModuleDto {
-  const ModuleDto(this.id, this.name, this.folderId);
+  const ModuleDto({
+    required this.id,
+    required this.name,
+    required this.folderId,
+  });
 
   @PrimaryKey(autoGenerate: true)
   final int? id;

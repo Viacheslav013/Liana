@@ -51,14 +51,14 @@ class BottomNavBarItem {
   final Widget cupertinoIcon;
   final Widget materialIcon;
   final String label;
-  
+
   BottomNavigationBarItem _toCupertino() {
     return BottomNavigationBarItem(
       icon: cupertinoIcon,
       label: label,
     );
   }
-  
+
   NavigationDestination _toMaterial() {
     return NavigationDestination(
       icon: materialIcon,

@@ -29,7 +29,6 @@ class EditModuleForm extends StatefulWidget {
 }
 
 class _EditModuleFormState extends State<EditModuleForm> {
-
   final moduleNameController = TextEditingController();
 
   @override
@@ -55,7 +54,10 @@ class _EditModuleFormState extends State<EditModuleForm> {
           children: [
             PlatformFormTextField(
               textEditingController: moduleNameController,
-              prefix: const Text('Название модуля'),
+              prefix: const Padding(
+                padding: EdgeInsets.only(right: 6),
+                child: Text('Название'),
+              ),
               placeholder: 'Модуль',
               textCapitalization: TextCapitalization.sentences,
               textInputAction: TextInputAction.done,
@@ -64,10 +66,10 @@ class _EditModuleFormState extends State<EditModuleForm> {
                 Module(
                   id: widget.moduleToEdit?.id,
                   name: moduleNameController.text,
-                  numberOfDefinitions:
-                    widget.moduleToEdit?.numberOfDefinitions ?? 0,
-                  folderId: widget.moduleToEdit?.folderId
-                    ?? widget.folder.id ?? -1,
+                  numberOfTermsDefinitions:
+                      widget.moduleToEdit?.numberOfTermsDefinitions ?? 0,
+                  folderId:
+                      widget.moduleToEdit?.folderId ?? widget.folder.id ?? -1,
                 ),
               ),
             ),

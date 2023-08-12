@@ -40,6 +40,15 @@ Color getFormBottomSheetSheetBackgroundColor(BuildContext context) {
 
 const progressIndicatorColor = Color(0xFF338AD3);
 
+TextStyle getCupertinoListSubtitleTextStyle(BuildContext context) {
+  return CupertinoTheme.of(context).textTheme.textStyle.merge(
+        TextStyle(
+          fontSize: 15,
+          color: CupertinoColors.secondaryLabel.resolveFrom(context),
+        ),
+      );
+}
+
 const cupertinoTheme = CupertinoThemeData(
   primaryColor: Color(0xFF338AD3),
   primaryContrastingColor: Color(0xFFFFFFFF),
