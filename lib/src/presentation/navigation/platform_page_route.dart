@@ -34,7 +34,7 @@ PageRoute<T> platformPageRoute<T>({
         child: SlideTransition(
           position: Tween(
             begin: Offset.zero,
-            end: const Offset(1, 0),
+            end: const Offset(-1, 0),
           ).animate(secondAnimation),
           child: child,
         ),

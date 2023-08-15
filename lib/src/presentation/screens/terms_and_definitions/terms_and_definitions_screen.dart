@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:liana/src/domain/entity/module.dart';
+import 'package:liana/src/domain/entity/quiz_item.dart';
 import 'package:liana/src/domain/entity/term_and_definition.dart';
 import 'package:liana/src/presentation/base/cubit_helper.dart';
 import 'package:liana/src/presentation/base/loadable.dart';
@@ -13,6 +14,7 @@ import 'package:liana/src/presentation/common/platform_sectioned_list.dart';
 import 'package:liana/src/presentation/common/platform_top_app_bar.dart';
 import 'package:liana/src/presentation/common/show_platform_bottom_sheet.dart';
 import 'package:liana/src/presentation/common/show_platform_dialog.dart';
+import 'package:liana/src/presentation/navigation/routes.dart';
 import 'package:liana/src/presentation/navigation/utils.dart';
 import 'package:liana/src/presentation/screens/terms_and_definitions/cubit/terms_and_definitions_screen_cubit.dart';
 import 'package:liana/src/presentation/screens/terms_and_definitions/cubit/terms_and_definitions_screen_state.dart';
@@ -120,6 +122,60 @@ class _TermsAndDefinitionsScreenState extends State<TermsAndDefinitionsScreen>
         : Theme.of(context).textTheme.titleLarge;
   }
 
+  void _navigateToTermDefinitionQuizScreen(
+    TermsAndDefinitionsScreenState state,
+  ) {
+    if (state.termsAndDefinitions.isNotEmpty) {
+      navigator(context)?.push(
+        createQuizScreenRoute(
+          _getTermDefinitionQuizItems(state.termsAndDefinitions),
+          'Термин - Определение',
+          widget.module.name,
+        ),
+      );
+    }
+  }
+
+  List<QuizItem> _getTermDefinitionQuizItems(
+    List<TermAndDefinition> termsAndDefinitions,
+  ) {
+    return termsAndDefinitions
+        .map(
+          (termAndDefinition) => QuizItem(
+            question: termAndDefinition.term,
+            answer: termAndDefinition.definition,
+          ),
+        )
+        .toList();
+  }
+
+  void _navigateToDefinitionTermQuizScreen(
+    TermsAndDefinitionsScreenState state,
+  ) {
+    if (state.termsAndDefinitions.isNotEmpty) {
+      navigator(context)?.push(
+        createQuizScreenRoute(
+          _getDefinitionTermQuizItems(state.termsAndDefinitions),
+          'Определение - Термин',
+          widget.module.name,
+        ),
+      );
+    }
+  }
+
+  List<QuizItem> _getDefinitionTermQuizItems(
+    List<TermAndDefinition> termsAndDefinitions,
+  ) {
+    return termsAndDefinitions
+        .map(
+          (termAndDefinition) => QuizItem(
+            question: termAndDefinition.definition,
+            answer: termAndDefinition.term,
+          ),
+        )
+        .toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return consume(
@@ -160,12 +216,14 @@ class _TermsAndDefinitionsScreenState extends State<TermsAndDefinitionsScreen>
                   'Тренажеры',
                   style: _getListSectionHeaderTextStyle(context),
                 ),
-                children: const [
+                children: [
                   PlatformListTile(
-                    title: Text('Термин - Определение'),
+                    title: const Text('Термин - Определение'),
+                    onTap: () => _navigateToTermDefinitionQuizScreen(state),
                   ),
                   PlatformListTile(
-                    title: Text('Определение - Термин'),
+                    title: const Text('Определение - Термин'),
+                    onTap: () => _navigateToDefinitionTermQuizScreen(state),
                   ),
                 ],
               ),
