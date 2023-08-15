@@ -51,9 +51,15 @@ class ModuleListItem extends StatelessWidget {
               iosIcon: CupertinoIcons.folder,
               materialIcon: Icons.folder_outlined,
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 16),
-              child: Text(module.name),
+            Flexible(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: Text(
+                  module.name,
+                  maxLines: 10000,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
             ),
           ],
         ),

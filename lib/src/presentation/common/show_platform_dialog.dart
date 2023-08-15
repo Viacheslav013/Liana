@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 Future<T?> showPlatformDialog<T>({
   required BuildContext context,
+  bool barrierDismissible = true,
   Widget? title,
   Widget? content,
   List<PlatformDialogAction>? actions,
@@ -12,6 +13,7 @@ Future<T?> showPlatformDialog<T>({
   if (Platform.isIOS) {
     return showCupertinoModalPopup<T>(
       context: context,
+      barrierDismissible: barrierDismissible,
       builder: (_) => CupertinoAlertDialog(
         title: title,
         content: content,
@@ -22,6 +24,7 @@ Future<T?> showPlatformDialog<T>({
 
   return showDialog<T>(
     context: context,
+    barrierDismissible: barrierDismissible,
     builder: (_) => AlertDialog(
       title: title,
       content: content,

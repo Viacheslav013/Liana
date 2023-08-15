@@ -48,7 +48,7 @@ class FolderListItem extends StatelessWidget {
           materialIcon: Icons.folder_outlined,
         ),
         onTap: () => onTap(folder),
-        title: Text(folder.name),
+        title: Text(folder.name, maxLines: 10000),
       ),
     );
   }

@@ -44,7 +44,7 @@ class TermAndDefinitionListItem extends StatelessWidget {
         ],
       ),
       child: PlatformListTile(
-        title: Text(termAndDefinition.term),
+        title: Text(termAndDefinition.term, maxLines: 10000),
         subtitle: Text(
           termAndDefinition.definition,
           overflow: TextOverflow.visible,
