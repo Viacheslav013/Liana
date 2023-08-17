@@ -30,6 +30,14 @@ class TermsAndDefinitionsRepositoryImpl
           );
 
   @override
+  Stream<List<TermAndDefinition>> getFavoriteTermsAndDefinitions() =>
+      _termsAndDefinitionsDatasource.getFavoriteTermsAndDefinitions().map(
+            (termsAndDefinitions) => termsAndDefinitions
+                .map(_dtoToTermAndDefinitionMapper.map)
+                .toList(),
+          );
+
+  @override
   Future<void> createTermAndDefinition(
     TermAndDefinition termAndDefinition,
   ) async {

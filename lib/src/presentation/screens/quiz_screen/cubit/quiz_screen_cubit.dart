@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:liana/src/domain/entity/answer_status.dart';
@@ -9,6 +11,7 @@ class QuizScreenCubit extends Cubit<QuizScreenState> {
   QuizScreenCubit() : super(const QuizScreenState());
 
   void onCreate(List<QuizItem> quizItems) {
+    quizItems.shuffle(Random(DateTime.now().millisecondsSinceEpoch));
     emit(state.copyWith(quizItems: quizItems));
   }
 
