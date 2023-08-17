@@ -5,6 +5,8 @@ abstract class TermsAndDefinitionsRepository {
     int moduleId,
   );
 
+  Stream<List<TermAndDefinition>> getFavoriteTermsAndDefinitions();
+
   Future<void> createTermAndDefinition(TermAndDefinition termAndDefinition);
 
   Future<void> updateTermAndDefinition(TermAndDefinition termAndDefinition);

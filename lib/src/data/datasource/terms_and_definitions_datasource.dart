@@ -8,6 +8,9 @@ abstract class TermsAndDefinitionsDatasource {
     int moduleId,
   );
 
+  @Query('SELECT * FROM TermAndDefinition WHERE isFavorite = 1')
+  Stream<List<TermAndDefinitionDto>> getFavoriteTermsAndDefinitions();
+
   @insert
   Future<void> createTermAndDefinition(TermAndDefinitionDto termAndDefinition);
 
