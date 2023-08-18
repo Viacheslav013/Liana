@@ -20,6 +20,8 @@ dependencies:
   freezed_annotation: 2.4.1
   floor: 1.4.2
   flutter_slidable: 3.0.0
+  shared_preferences: 2.2.0
+  flutter_native_splash: 2.3.2
 
 dev_dependencies:
   flutter_test:
