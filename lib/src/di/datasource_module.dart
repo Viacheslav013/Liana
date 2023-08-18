@@ -4,6 +4,7 @@ import 'package:liana/src/data/datasource/folders_datasource.dart';
 import 'package:liana/src/data/datasource/modules_datasource.dart';
 import 'package:liana/src/data/datasource/terms_and_definitions_datasource.dart';
 import 'package:liana/src/domain/entity/term_and_definition.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 const m = <TermAndDefinition, int>{};
 
@@ -29,4 +30,9 @@ abstract class DatasourceModule {
     LianaAppDatabase database,
   ) =>
       database.termsAndDefinitionsDatasource;
+
+  @preResolve
+  @singleton
+  Future<SharedPreferences> provideSharedPreferences() async =>
+      SharedPreferences.getInstance();
 }
