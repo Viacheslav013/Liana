@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:liana/src/domain/entity/module.dart';
@@ -54,7 +55,7 @@ class _TermsAndDefinitionsScreenState extends State<TermsAndDefinitionsScreen>
       isScrollControlled: true,
       child: EditTermAndDefinitionForm(
         formKey: formKey,
-        title: 'Добавить термин',
+        title: 'terms_and_definitions_screen_create_term'.tr(),
         module: widget.module,
         onSubmitForm: (termAndDefinition) => _onCreateTermAndDefinitionSubmit(
           cubit,
@@ -88,7 +89,7 @@ class _TermsAndDefinitionsScreenState extends State<TermsAndDefinitionsScreen>
       isScrollControlled: true,
       child: EditTermAndDefinitionForm(
         formKey: formKey,
-        title: 'Редактировать термин',
+        title: 'terms_and_definitions_screen_update_term'.tr(),
         termAndDefinitionToEdit: termAndDefinition,
         module: widget.module,
         onSubmitForm: (termAndDefinition) => _onEditTermAndDefinitionSubmit(
@@ -129,7 +130,7 @@ class _TermsAndDefinitionsScreenState extends State<TermsAndDefinitionsScreen>
       navigator(context)?.push(
         createQuizScreenRoute(
           _getTermDefinitionQuizItems(state.termsAndDefinitions),
-          'Термин - Определение',
+          'terms_and_definitions_screen_term_definition'.tr(),
           widget.module.name,
         ),
       );
@@ -156,7 +157,7 @@ class _TermsAndDefinitionsScreenState extends State<TermsAndDefinitionsScreen>
       navigator(context)?.push(
         createQuizScreenRoute(
           _getDefinitionTermQuizItems(state.termsAndDefinitions),
-          'Определение - Термин',
+          'terms_and_definitions_screen_definition_term'.tr(),
           widget.module.name,
         ),
       );
@@ -183,12 +184,12 @@ class _TermsAndDefinitionsScreenState extends State<TermsAndDefinitionsScreen>
         if (state.error != null) {
           showPlatformDialog(
             context: context,
-            title: const Text('Ошибка'),
+            title: Text('error_dialog_tittle'.tr()),
             actions: [
               PlatformDialogAction(
                 isDefaultAction: true,
                 onPressed: () => _onDismissErrorDialog(context),
-                text: 'ОК',
+                text: 'dialog_ok_button'.tr(),
               ),
             ],
           );
@@ -213,23 +214,27 @@ class _TermsAndDefinitionsScreenState extends State<TermsAndDefinitionsScreen>
             listSections: [
               PlatformListSection(
                 header: Text(
-                  'Тренажеры',
+                  'terms_and_definitions_screen_learn'.tr(),
                   style: _getListSectionHeaderTextStyle(context),
                 ),
                 children: [
                   PlatformListTile(
-                    title: const Text('Термин - Определение'),
+                    title: Text(
+                      'terms_and_definitions_screen_term_definition'.tr(),
+                    ),
                     onTap: () => _navigateToTermDefinitionQuizScreen(state),
                   ),
                   PlatformListTile(
-                    title: const Text('Определение - Термин'),
+                    title: Text(
+                      'terms_and_definitions_screen_definition_term'.tr(),
+                    ),
                     onTap: () => _navigateToDefinitionTermQuizScreen(state),
                   ),
                 ],
               ),
               PlatformListSection(
                 header: Text(
-                  'Термины',
+                  'terms_and_definitions_screen_terms'.tr(),
                   style: _getListSectionHeaderTextStyle(context),
                 ),
                 children: [

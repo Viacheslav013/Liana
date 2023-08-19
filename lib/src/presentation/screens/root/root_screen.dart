@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:liana/src/presentation/common/platform_bottom_nav_bar.dart';
@@ -57,21 +58,21 @@ class RootScreenState extends State<RootScreen> {
       bottomNavBar: PlatformBottomNavBar(
         onItemTap: _onItemTap,
         selectedItemIndex: _selectedItemIndex,
-        items: const [
+        items: [
           BottomNavBarItem(
-            cupertinoIcon: Icon(CupertinoIcons.folder),
-            materialIcon: Icon(Icons.folder_outlined),
-            label: 'Библиотека',
+            cupertinoIcon: const Icon(CupertinoIcons.folder),
+            materialIcon: const Icon(Icons.folder_outlined),
+            label: 'library_screen_title'.tr(),
           ),
           BottomNavBarItem(
-            cupertinoIcon: Icon(CupertinoIcons.heart),
-            materialIcon: Icon(Icons.favorite_outline),
-            label: 'Избранные',
+            cupertinoIcon: const Icon(CupertinoIcons.heart),
+            materialIcon: const Icon(Icons.favorite_outline),
+            label: 'favorites_screen_title'.tr(),
           ),
           BottomNavBarItem(
-            cupertinoIcon: Icon(CupertinoIcons.settings),
-            materialIcon: Icon(Icons.settings_outlined),
-            label: 'Настройки',
+            cupertinoIcon: const Icon(CupertinoIcons.settings),
+            materialIcon: const Icon(Icons.settings_outlined),
+            label: 'settings_screen_title'.tr(),
           ),
         ],
       ),

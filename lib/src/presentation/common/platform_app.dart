@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:liana/src/presentation/base/cubit_helper.dart';
@@ -18,6 +19,24 @@ class PlatformApp extends PlatformWidget
   });
 
   final Widget home;
+
+  void _stateListener(BuildContext context, SettingsState state) {
+    final locale = state.settings?.locale;
+    if (locale != null) {
+      context.setLocale(Locale(locale));
+      rebuildAllWidgets(context);
+    }
+  }
+
+  void rebuildAllWidgets(BuildContext context) {
+    void rebuild(Element el) {
+      el
+        ..markNeedsBuild()
+        ..visitChildren(rebuild);
+    }
+
+    (context as Element).visitChildren(rebuild);
+  }
 
   Brightness? _getCupertinoBrightness({
     required bool useSystemTheme,
@@ -44,19 +63,21 @@ class PlatformApp extends PlatformWidget
   @override
   Widget buildCupertinoWidget(BuildContext context) {
     return CubitHost<SettingsCubit>(
-      child: observe(
-        builder: (_, state) => state.settings != null
-            ? CupertinoApp(
-                title: _title,
-                home: home,
-                theme: cupertinoTheme.copyWith(
-                  brightness: _getCupertinoBrightness(
-                    useSystemTheme: state.settings?.useSystemTheme ?? true,
-                    darkMode: state.settings?.darkMode ?? false,
-                  ),
-                ),
-              )
-            : Container(),
+      child: consume(
+        listener: (_, state) => _stateListener(context, state),
+        builder: (_, state) => CupertinoApp(
+          title: _title,
+          home: home,
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+          theme: cupertinoTheme.copyWith(
+            brightness: _getCupertinoBrightness(
+              useSystemTheme: state.settings?.useSystemTheme ?? true,
+              darkMode: state.settings?.darkMode ?? false,
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -64,19 +85,21 @@ class PlatformApp extends PlatformWidget
   @override
   Widget buildMaterialWidget(BuildContext context) {
     return CubitHost<SettingsCubit>(
-      child: observe(
-        builder: (_, state) => state.settings != null
-            ? MaterialApp(
-                title: _title,
-                home: home,
-                theme: lightMaterialTheme,
-                darkTheme: darkMaterialTheme,
-                themeMode: _getMaterialThemeMode(
-                  useSystemTheme: state.settings?.useSystemTheme ?? true,
-                  darkMode: state.settings?.darkMode ?? false,
-                ),
-              )
-            : Container(),
+      child: consume(
+        listener: (_, state) => _stateListener(context, state),
+        builder: (_, state) => MaterialApp(
+          title: _title,
+          home: home,
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+          theme: lightMaterialTheme,
+          darkTheme: darkMaterialTheme,
+          themeMode: _getMaterialThemeMode(
+            useSystemTheme: state.settings?.useSystemTheme ?? true,
+            darkMode: state.settings?.darkMode ?? false,
+          ),
+        ),
       ),
     );
   }

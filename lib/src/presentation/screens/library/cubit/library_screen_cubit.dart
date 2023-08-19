@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:liana/src/domain/entity/folder.dart';
@@ -33,7 +34,7 @@ class LibraryScreenCubit extends Cubit<LibraryScreenState> {
 
   String? validateFolderName(String? name) {
     if (name == null || name.isEmpty) {
-      return 'Пожалуйста, введите название папки';
+      return 'library_screen_empty_folder_name_error'.tr();
     }
 
     return null;
@@ -90,7 +91,7 @@ class LibraryScreenCubit extends Cubit<LibraryScreenState> {
     emit(
       state.copyWith(
         isLoading: false,
-        error: 'Упс, что-то пошло не так...',
+        error: 'default_error_message'.tr(),
       ),
     );
   }

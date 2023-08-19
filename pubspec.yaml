@@ -21,7 +21,7 @@ dependencies:
   floor: 1.4.2
   flutter_slidable: 3.0.0
   shared_preferences: 2.2.0
-  flutter_native_splash: 2.3.2
+  easy_localization: 3.0.2
 
 dev_dependencies:
   flutter_test:
@@ -36,3 +36,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/translations/

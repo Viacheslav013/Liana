@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -66,7 +67,10 @@ class ModuleListItem extends StatelessWidget {
         subtitle: Padding(
           padding: const EdgeInsets.only(top: 2),
           child: Text(
-            '${module.numberOfTermsDefinitions} терминов',
+            'modules_screen_terms_count'.plural(
+              module.numberOfTermsDefinitions,
+              args: [module.numberOfTermsDefinitions.toString()],
+            ),
             style: Platform.isIOS
                 ? getCupertinoListSubtitleTextStyle(context)
                 : null,
