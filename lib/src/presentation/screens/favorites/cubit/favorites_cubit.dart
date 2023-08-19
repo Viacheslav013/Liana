@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:liana/src/domain/entity/term_and_definition.dart';
@@ -62,7 +63,7 @@ class FavoritesCubit extends Cubit<TermsAndDefinitionsScreenState> {
     emit(
       state.copyWith(
         isLoading: false,
-        error: 'Упс, что-то пошло не так...',
+        error: 'default_error_message'.tr(),
       ),
     );
   }

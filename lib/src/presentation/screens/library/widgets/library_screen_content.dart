@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:liana/src/domain/entity/folder.dart';
@@ -38,7 +39,7 @@ class _LibraryScreenContentState extends State<LibraryScreenContent>
       minHeight: 500,
       child: EditFolderForm(
         formKey: formKey,
-        title: 'Создать папку',
+        title: 'library_screen_create_folder'.tr(),
         onSubmitForm: (folder) => _onCreateFolderFormSubmit(cubit, folder),
         folderNameValidator: cubit?.validateFolderName ?? (_) => null,
       ),
@@ -64,7 +65,7 @@ class _LibraryScreenContentState extends State<LibraryScreenContent>
       child: EditFolderForm(
         formKey: formKey,
         folderToEdit: folder,
-        title: 'Редактировать папку',
+        title: 'library_screen_edit_folder'.tr(),
         onSubmitForm: (folder) => _onEditFolderFormSubmit(cubit, folder),
         folderNameValidator: cubit?.validateFolderName ?? (_) => null,
       ),
@@ -90,13 +91,13 @@ class _LibraryScreenContentState extends State<LibraryScreenContent>
         if (state.error != null) {
           showPlatformDialog(
             context: context,
-            title: const Text('Ошибка'),
+            title: Text('error_dialog_tittle'.tr()),
             content: Text(state.error ?? ''),
             actions: [
               PlatformDialogAction(
                 isDefaultAction: true,
                 onPressed: () => _onDismissErrorDialog(context),
-                text: 'ОК',
+                text: 'dialog_ok_button'.tr(),
               ),
             ],
           );
@@ -104,7 +105,7 @@ class _LibraryScreenContentState extends State<LibraryScreenContent>
       },
       builder: (_, state) => PlatformScaffold(
         topAppBar: platformTopAppBar(
-          title: const Text('Библиотека'),
+          title: Text('library_screen_title'.tr()),
           trailing: PlatformButton(
             padding: const EdgeInsets.all(10),
             onPressed: () => _onAddFolderButtonPressed(
@@ -119,7 +120,7 @@ class _LibraryScreenContentState extends State<LibraryScreenContent>
           child: ListView.separated(
             itemBuilder: (_, index) => FolderListItem(
               onTap: (folder) => navigator(context)?.push(
-                createModulesScreenRoute(folder, 'Библиотека'),
+                createModulesScreenRoute(folder, 'library_screen_title'.tr()),
               ),
               onEditPressed: (folder) => _onEditFolderButtonPressed(
                 context,

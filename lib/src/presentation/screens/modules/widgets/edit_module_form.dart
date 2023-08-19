@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:liana/src/domain/entity/folder.dart';
@@ -54,11 +55,11 @@ class _EditModuleFormState extends State<EditModuleForm> {
           children: [
             PlatformFormTextField(
               textEditingController: moduleNameController,
-              prefix: const Padding(
-                padding: EdgeInsets.only(right: 6),
-                child: Text('Название'),
+              prefix: Padding(
+                padding: const EdgeInsets.only(right: 6),
+                child: Text('modules_screen_module_name_input_title'.tr()),
               ),
-              placeholder: 'Модуль',
+              placeholder: 'modules_screen_module_name_input_placeholder'.tr(),
               textCapitalization: TextCapitalization.sentences,
               textInputAction: TextInputAction.done,
               validator: widget.moduleNameValidator,

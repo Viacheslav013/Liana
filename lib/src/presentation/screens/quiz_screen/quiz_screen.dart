@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:liana/src/domain/entity/answer_status.dart';
@@ -109,13 +110,15 @@ class _QuizScreenState extends State<QuizScreen>
     showPlatformDialog(
       context: context,
       barrierDismissible: false,
-      title: const Text('Завершено'),
+      title: Text('quiz_screen_done'.tr()),
       content: Text(
-        'Вы набрали ${state.correctAnswersCount}/${state.quizItems.length} баллов',
+        'quiz_screen_quiz_result'.tr(
+          args: ['${state.correctAnswersCount}/${state.quizItems.length}'],
+        ),
       ),
       actions: [
         PlatformDialogAction(
-          text: 'ОК',
+          text: 'dialog_ok_button'.tr(),
           isDefaultAction: true,
           onPressed: _endQuiz,
         ),
@@ -124,8 +127,8 @@ class _QuizScreenState extends State<QuizScreen>
   }
 
   void _endQuiz() {
-    rootNavigator(context)?.pop();
     navigator(context)?.pop();
+    rootNavigator(context)?.pop();
   }
 
   @override

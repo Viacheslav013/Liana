@@ -17,12 +17,14 @@ class SettingsCubit extends Cubit<SettingsState> {
   Future<void> _loadSettings() async {
     final useSystemMode = await _settingsRepository.getUseSystemMode();
     final darkMode = await _settingsRepository.getDarkMode();
+    final locale = await _settingsRepository.getLocale();
 
     emit(
       state.copyWith(
         settings: Settings(
           useSystemTheme: useSystemMode,
           darkMode: darkMode,
+          locale: locale,
         ),
       ),
     );
@@ -45,6 +47,17 @@ class SettingsCubit extends Cubit<SettingsState> {
       state.copyWith(
         settings: state.settings?.copyWith(
           darkMode: await _settingsRepository.getDarkMode(),
+        ),
+      ),
+    );
+  }
+
+  Future<void> setLocale(String locale) async {
+    await _settingsRepository.setLocale(locale);
+    emit(
+      state.copyWith(
+        settings: state.settings?.copyWith(
+          locale: await _settingsRepository.getLocale(),
         ),
       ),
     );

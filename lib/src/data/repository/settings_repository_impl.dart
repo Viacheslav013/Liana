@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 const _useSystemModeKey = 'useSystemMode';
 const _darkModeKey = 'darkMode';
+const _localeKey = 'locale';
 
 @Singleton(as: SettingsRepository)
 class SettingsRepositoryImpl implements SettingsRepository {
@@ -26,4 +27,11 @@ class SettingsRepositoryImpl implements SettingsRepository {
   @override
   Future<void> setDarkMode({required bool darkMode}) async =>
       _sharedPreferences.setBool(_darkModeKey, darkMode);
+
+  @override
+  Future<String?> getLocale() async => _sharedPreferences.getString(_localeKey);
+
+  @override
+  Future<void> setLocale(String locale) =>
+      _sharedPreferences.setString(_localeKey, locale);
 }

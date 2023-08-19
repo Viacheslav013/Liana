@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart' as injectable;
 import 'package:liana/src/domain/entity/module.dart';
@@ -38,7 +39,7 @@ class TermsAndDefinitionsScreenCubit
 
   String? validateTerm(String? term) {
     if (term == null || term.isEmpty) {
-      return 'Пожалуйста, введите термин';
+      return 'terms_and_definitions_screen_empty_term_error'.tr();
     }
 
     return null;
@@ -46,7 +47,7 @@ class TermsAndDefinitionsScreenCubit
 
   String? validateDefinition(String? definition) {
     if (definition == null || definition.isEmpty) {
-      return 'Пожалуйста, введите определение';
+      return 'terms_and_definitions_screen_empty_definition_error'.tr();
     }
 
     return null;
@@ -128,7 +129,7 @@ class TermsAndDefinitionsScreenCubit
     emit(
       state.copyWith(
         isLoading: false,
-        error: 'Упс, что-то пошло не так...',
+        error: 'default_error_message'.tr(),
       ),
     );
   }

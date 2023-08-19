@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:liana/src/domain/entity/folder.dart';
@@ -51,11 +52,11 @@ class _EditFolderFormState extends State<EditFolderForm> {
           children: [
             PlatformFormTextField(
               textEditingController: folderNameController,
-              prefix: const Padding(
-                padding: EdgeInsets.only(right: 6),
-                child: Text('Название'),
+              prefix: Padding(
+                padding: const EdgeInsets.only(right: 6),
+                child: Text('library_screen_folder_name_input_title'.tr()),
               ),
-              placeholder: 'Папка',
+              placeholder: 'library_screen_folder_name_input_placeholder'.tr(),
               validator: widget.folderNameValidator,
               textInputAction: TextInputAction.done,
               textCapitalization: TextCapitalization.sentences,

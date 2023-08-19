@@ -6,4 +6,8 @@ abstract class SettingsRepository {
   Future<bool> getDarkMode();
 
   Future<void> setDarkMode({required bool darkMode});
+
+  Future<String?> getLocale();
+
+  Future<void> setLocale(String locale);
 }

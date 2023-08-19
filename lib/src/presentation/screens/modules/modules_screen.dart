@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:liana/src/domain/entity/folder.dart';
@@ -46,7 +47,7 @@ class _ModulesScreenContentState extends State<ModulesScreenContent>
       minHeight: 500,
       child: EditModuleForm(
         formKey: formKey,
-        title: 'Создать модуль',
+        title: 'modules_screen_create_module'.tr(),
         folder: widget.folder,
         onSubmitForm: (module) => _onCreateModuleSubmit(cubit, module),
         moduleNameValidator: cubit?.validateModuleName ?? (_) => null,
@@ -72,7 +73,7 @@ class _ModulesScreenContentState extends State<ModulesScreenContent>
       minHeight: 500,
       child: EditModuleForm(
         formKey: formKey,
-        title: 'Редактировать модуль',
+        title: 'modules_screen_update_module'.tr(),
         folder: widget.folder,
         moduleToEdit: module,
         onSubmitForm: (module) => _onEditModuleSubmit(cubit, module),
@@ -100,12 +101,12 @@ class _ModulesScreenContentState extends State<ModulesScreenContent>
         if (state.error != null) {
           showPlatformDialog(
             context: context,
-            title: const Text('Ошибка'),
+            title: Text('error_dialog_tittle'.tr()),
             actions: [
               PlatformDialogAction(
                 isDefaultAction: true,
                 onPressed: () => _onDismissErrorDialog(context),
-                text: 'ОК',
+                text: 'dialog_ok_button'.tr(),
               ),
             ],
           );
@@ -131,7 +132,7 @@ class _ModulesScreenContentState extends State<ModulesScreenContent>
               onTap: (module) => navigator(context)?.push(
                 createTermsAndDefinitionsScreenRoute(
                   state.modules[index],
-                  'Модули',
+                  'modules_screen_title'.tr(),
                 ),
               ),
               onEditPressed: (module) => _onEditModuleButtonPressed(

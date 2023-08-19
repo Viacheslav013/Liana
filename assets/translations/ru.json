@@ -1,0 +1,57 @@
+{
+  "app_name": "Liana",
+
+  "error_dialog_tittle": "Ошибка",
+  "default_error_message": "Упс, что-то пошло не так...",
+
+  "dialog_ok_button": "ОК",
+
+  "library_screen_title": "Библиотека",
+  "favorites_screen_title": "Избранные",
+  "settings_screen_title": "Настройки",
+
+  "library_screen_create_folder": "Создать папку",
+  "library_screen_edit_folder": "Редактировать папку",
+  "library_screen_folder_name_input_title": "Название",
+  "library_screen_folder_name_input_placeholder": "Папка",
+  "library_screen_empty_folder_name_error": "Пожалуйста, введите название папки",
+
+  "modules_screen_title": "Модули",
+  "modules_screen_create_module": "Создать модуль",
+  "modules_screen_update_module": "Редактировать модуль",
+  "modules_screen_module_name_input_title": "Название",
+  "modules_screen_module_name_input_placeholder": "Модуль",
+  "modules_screen_terms_count": {
+    "zero": "{} терминов",
+    "one": "{} термин",
+    "two": "{} термина",
+    "few": "{} термина",
+    "many": "{} терминов"
+  },
+  "modules_screen_empty_module_name_error": "Пожалуйста, введите название модуля",
+
+  "terms_and_definitions_screen_learn": "Учить",
+  "terms_and_definitions_screen_term_definition": "Термин - Определение",
+  "terms_and_definitions_screen_definition_term": "Определение - Термин",
+  "terms_and_definitions_screen_terms": "Термины",
+  "terms_and_definitions_screen_create_term": "Добавить термин",
+  "terms_and_definitions_screen_update_term": "Редактировать термин",
+  "terms_and_definitions_screen_term_input_title": "Термин",
+  "terms_and_definitions_screen_term_input_placeholder": "Введите термин",
+  "terms_and_definitions_screen_definition_input_title": "Определение",
+  "terms_and_definitions_screen_definition_input_placeholder": "Введите определение",
+  "terms_and_definitions_screen_empty_term_error": "Пожалуйста, введите термин",
+  "terms_and_definitions_screen_empty_definition_error": "Пожалуйста, введите определение",
+
+  "quiz_screen_unlearned": "Не знаю",
+  "quiz_screen_answer_support_text": "Введите ответ",
+  "quiz_screen_correct": "Правильно",
+  "quiz_screen_incorrect": "Неправильно",
+  "quiz_screen_done": "Завершено",
+  "quiz_screen_quiz_result": "Вы набрали {} баллов",
+
+  "settings_screen_use_system_theme": "Использовать системную тему",
+  "settings_screen_dark_mode": "Темная тема",
+  "settings_screen_language": "Язык",
+  "settings_screen_choose_language": "Выбрать язык"
+}

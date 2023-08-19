@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:liana/src/domain/entity/answer_status.dart';
@@ -36,14 +37,14 @@ class QuizTextField extends PlatformWidget {
   String _getHelperText() {
     final localAnswerStatus = answerStatus;
     if (localAnswerStatus == null) {
-      return 'Введите ответ';
+      return 'quiz_screen_answer_support_text'.tr();
     }
 
     switch (localAnswerStatus) {
       case AnswerStatus.correct:
-        return 'Правильно';
+        return 'quiz_screen_correct'.tr();
       case AnswerStatus.wrong:
-        return 'Неправильно';
+        return 'quiz_screen_incorrect'.tr();
       case AnswerStatus.unlearned:
         return '';
     }
@@ -59,7 +60,7 @@ class QuizTextField extends PlatformWidget {
     return GestureDetector(
       onTap: onUnlearnedTap,
       child: Text(
-        'Не знаю',
+        'quiz_screen_unlearned'.tr(),
         style: TextStyle(
           color: _getTextFieldColor(context),
         ),

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:liana/src/domain/entity/quiz_item.dart';
@@ -40,8 +41,8 @@ class FavoritesScreenContent extends StatelessWidget
       navigator(context)?.push(
         createQuizScreenRoute(
           _getTermDefinitionQuizItems(state.termsAndDefinitions),
-          'Термин - Определение',
-          'Избранные',
+          'terms_and_definitions_screen_term_definition'.tr(),
+          'favorites_screen_title'.tr(),
         ),
       );
     }
@@ -68,8 +69,8 @@ class FavoritesScreenContent extends StatelessWidget
       navigator(context)?.push(
         createQuizScreenRoute(
           _getDefinitionTermQuizItems(state.termsAndDefinitions),
-          'Определение - Термин',
-          'Избранные',
+          'terms_and_definitions_screen_definition_term'.tr(),
+          'favorites_screen_title'.tr(),
         ),
       );
     }
@@ -95,12 +96,12 @@ class FavoritesScreenContent extends StatelessWidget
         if (state.error != null) {
           showPlatformDialog(
             context: context,
-            title: const Text('Ошибка'),
+            title: Text('error_dialog_tittle'.tr()),
             actions: [
               PlatformDialogAction(
                 isDefaultAction: true,
                 onPressed: () => _onDismissErrorDialog(context),
-                text: 'ОК',
+                text: 'dialog_ok_button'.tr(),
               ),
             ],
           );
@@ -110,25 +111,29 @@ class FavoritesScreenContent extends StatelessWidget
         isLoading: state.isLoading,
         child: PlatformScaffold(
           topAppBar: platformTopAppBar(
-            title: const Text('Избранные'),
+            title: Text('favorites_screen_title'.tr()),
           ),
           body: PlatformSectionedList(
             listSections: [
               PlatformListSection(
                 header: Text(
-                  'Тренажеры',
+                  'terms_and_definitions_screen_learn'.tr(),
                   style: _getListSectionHeaderTextStyle(context),
                 ),
                 children: [
                   PlatformListTile(
-                    title: const Text('Термин - Определение'),
+                    title: Text(
+                      'terms_and_definitions_screen_term_definition'.tr(),
+                    ),
                     onTap: () => _navigateToTermDefinitionQuizScreen(
                       state,
                       context,
                     ),
                   ),
                   PlatformListTile(
-                    title: const Text('Определение - Термин'),
+                    title: Text(
+                      'terms_and_definitions_screen_definition_term'.tr(),
+                    ),
                     onTap: () => _navigateToDefinitionTermQuizScreen(
                       state,
                       context,
@@ -138,7 +143,7 @@ class FavoritesScreenContent extends StatelessWidget
               ),
               PlatformListSection(
                 header: Text(
-                  'Термины',
+                  'terms_and_definitions_screen_terms'.tr(),
                   style: _getListSectionHeaderTextStyle(context),
                 ),
                 children: [

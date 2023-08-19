@@ -1,0 +1,56 @@
+{
+  "app_name": "Liana",
+
+  "error_dialog_tittle": "Error",
+  "default_error_message": "Oops, something went wrong...",
+
+  "dialog_ok_button": "OK",
+
+  "library_screen_title": "Library",
+  "favorites_screen_title": "Favorites",
+  "settings_screen_title": "Settings",
+
+  "library_screen_create_folder": "Create folder",
+  "library_screen_edit_folder": "Edit folder",
+  "library_screen_folder_name_input_title": "Name",
+  "library_screen_folder_name_input_placeholder": "Folder",
+  "library_screen_empty_folder_name_error": "Please, enter a folder name",
+
+  "modules_screen_title": "Modules",
+  "modules_screen_create_module": "Create module",
+  "modules_screen_update_module": "Update module",
+  "modules_screen_module_name_input_title": "Name",
+  "modules_screen_module_name_input_placeholder": "Module",
+  "modules_screen_terms_count": {
+    "zero": "{} terms",
+    "one": "{} term",
+    "many": "{} terms",
+    "other": "{} terms"
+  },
+  "modules_screen_empty_module_name_error": "Please, enter a module name",
+
+  "terms_and_definitions_screen_learn": "Learn",
+  "terms_and_definitions_screen_term_definition": "Term - Definition",
+  "terms_and_definitions_screen_definition_term": "Definition - Term",
+  "terms_and_definitions_screen_terms": "Terms",
+  "terms_and_definitions_screen_create_term": "Add term",
+  "terms_and_definitions_screen_update_term": "Edit term",
+  "terms_and_definitions_screen_term_input_title": "Term",
+  "terms_and_definitions_screen_term_input_placeholder": "Enter a term",
+  "terms_and_definitions_screen_definition_input_title": "Definition",
+  "terms_and_definitions_screen_definition_input_placeholder": "Enter a definition",
+  "terms_and_definitions_screen_empty_term_error": "Please, enter a term",
+  "terms_and_definitions_screen_empty_definition_error": "Please, enter a definition",
+
+  "quiz_screen_unlearned": "I don't know",
+  "quiz_screen_answer_support_text": "Enter an answer",
+  "quiz_screen_correct": "Correct",
+  "quiz_screen_incorrect": "Incorrect",
+  "quiz_screen_done": "Done",
+  "quiz_screen_quiz_result": "You scored {} points",
+
+  "settings_screen_use_system_theme": "Use system theme",
+  "settings_screen_dark_mode": "Dark mode",
+  "settings_screen_language": "Language",
+  "settings_screen_choose_language": "Choose a language"
+}

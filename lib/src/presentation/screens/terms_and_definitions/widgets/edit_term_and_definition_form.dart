@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:liana/src/domain/entity/module.dart';
@@ -62,23 +61,28 @@ class _EditTermAndDefinitionFormState extends State<EditTermAndDefinitionForm> {
             PlatformFormTextField(
               textEditingController: termTextController,
               prefix: Padding(
-                padding: EdgeInsets.only(
-                  right: Platform.isIOS ? 55 : 45,
+                padding: const EdgeInsets.only(right: 6),
+                child: Text(
+                  'terms_and_definitions_screen_term_input_title'.tr(),
                 ),
-                child: const Text('Термин'),
               ),
-              placeholder: 'Введите термин',
+              placeholder:
+                  'terms_and_definitions_screen_term_input_placeholder'.tr(),
               textCapitalization: TextCapitalization.sentences,
               textInputAction: TextInputAction.next,
               validator: widget.termValidator,
             ),
             PlatformFormTextField(
               textEditingController: definitionController,
-              prefix: const Padding(
-                padding: EdgeInsets.only(right: 6),
-                child: Text('Определение'),
+              prefix: Padding(
+                padding: const EdgeInsets.only(right: 6),
+                child: Text(
+                  'terms_and_definitions_screen_definition_input_title'.tr(),
+                ),
               ),
-              placeholder: 'Введите определение',
+              placeholder:
+                  'terms_and_definitions_screen_definition_input_placeholder'
+                      .tr(),
               textCapitalization: TextCapitalization.sentences,
               textInputAction: TextInputAction.done,
               validator: widget.definitionValidator,
