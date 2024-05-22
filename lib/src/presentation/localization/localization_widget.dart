@@ -21,14 +21,14 @@ class LocalizationWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: _initEasyLocalization(),
-      builder: (_, snapshot) =>
-          snapshot.connectionState == ConnectionState.done
-              ? EasyLocalization(
-                supportedLocales: supportedLocales.keys.toList(),
-                path: 'assets/translations',
-                fallbackLocale: supportedLocales.keys.first,
-                child: child,
-              ) : const SizedBox.shrink(),
+      builder: (_, snapshot) => snapshot.connectionState == ConnectionState.done
+          ? EasyLocalization(
+              supportedLocales: supportedLocales.keys.toList(),
+              path: 'assets/translations',
+              fallbackLocale: supportedLocales.keys.first,
+              child: child,
+            )
+          : const SizedBox.shrink(),
     );
   }
 }
